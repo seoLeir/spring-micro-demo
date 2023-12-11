@@ -15,4 +15,4 @@ eureka:
   client:
     # url куда будет происходить регистрация микросервисов
     service-url:
-      defaultZone: http://localhost:8080/eureka
+      defaultZone: http://localhost:8081/eureka

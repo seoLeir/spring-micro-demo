@@ -1,0 +1,35 @@
+server:
+  port: 8082
+
+# ID сервера eureka. Айди приложения
+# Желательно указывать всегда в микросервисных приложениях
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # Флаг, разрешающий интеграцию со шлюзом DiscoveryClient.
+          # Для корректной работы api gateway
+          enabled: true
+          # Возможность использовать строчные буквы идентификатора службы в предикатах и фильтрах,
+          # по умолчанию — false. Полезно с эврикой, когда она автоматически записывает идентификатор
+          # службы в верхний регистр. поэтому MYSERIVCE будет соответствовать /myservice/**
+          lower-case-service-id: true
+      # Перенаправление - routing
+      routes:
+        # Id -> айди самого роута, по нему можно обращаться к роуту as spring.application.name
+        - id: eclient
+          # К какому именно инстансу будет идти обращение. Указываем айди приложения (spring.application.name e.g eclient)
+          # lb - load balancer -> он автоматически берет данные о микросервисе у самого api-gateway (eureka), потому что он содержит информацию о портах и хостах
+          uri: lb://eclient
+          predicates:
+            - Path=/main/test
+            - Method=GET
+
+eureka:
+  client:
+    # url куда будет происходить регистрация микросервисов
+    service-url:
+      defaultZone: http://localhost:8081/eureka
