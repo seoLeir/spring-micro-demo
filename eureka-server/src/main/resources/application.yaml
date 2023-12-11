@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8761
 
 # ID сервера eureka. Айди приложения
 # Желательно указывать всегда в микросервисных приложениях
@@ -16,7 +16,7 @@ eureka:
     fetch-registry: false
     # url куда будет происходить регистрация микросервисов
     service-url:
-      defaultZone: http://localhost:8081/eureka
+      defaultZone: http://localhost:8761/eureka
 
 
 #logging:
