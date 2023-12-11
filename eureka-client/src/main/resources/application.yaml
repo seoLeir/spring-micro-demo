@@ -1,21 +1,5 @@
-# Напрямое обращение к микросервису не принято
-# Лучше указывать 0, при старте приложения этому микросервису будет присвоен рандомный порт
-server:
-  port: 0
-
-# ID сервера eureka. Айди приложения
-# Желательно указывать всегда в микросервисных приложениях
-# По этому айди будет искаться instance приложения
 spring:
   application:
     name: eclient
-
-
-eureka:
-  client:
-    # url куда будет происходить регистрация микросервисов
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-  # Для того, чтобы каждый инстанс имел уникальный id
-  instance:
-    instance-id: ${spring.application.name}:${random.value}
+  config:
+    import: optional:configserver:http://localhost:8888
