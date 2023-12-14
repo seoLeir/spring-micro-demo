@@ -6,16 +6,8 @@ spring:
     name: api-gateway
   config:
     import: configserver:http://localhost:8888
-  cloud:
-    gateway:
-      routes:
-        - id: eclient
-          uri: lb://eclient
-          predicates:
-            - Path=/main/test
-            - Method=GET
-        - id: eclient2
-          uri: lb://eclient2
-          predicates:
-            - Path=/new/name
-            - Method=GET
+management:
+  endpoints:
+    web:
+      exposure:
+        include=*:

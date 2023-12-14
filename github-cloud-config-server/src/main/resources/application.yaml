@@ -6,12 +6,11 @@ spring:
       server:
         git:
           username: seoLeir
-          password: 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
+          password: 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
           basedir: file://D:/VCSprojects/temp-cloud-config-server
           clone-on-start: true
           uri: https://github.com/seoLeir/spring-micro-demo-cloud-config-repo.git
           default-label: main
-          timeout: 10
           force-pull: true
   application:
     name: github-cloud-config-server
